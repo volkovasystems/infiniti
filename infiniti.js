@@ -105,6 +105,10 @@ if( asea.client &&
 
 var Infiniti = diatom( "Infiniti" );
 
+harden( "now", function now( ){
+	return Infiniti( ).compact( );
+}, Infiniti );
+
 Infiniti.prototype.toString = function toString( ){
 	return this.trueDate;
 };
@@ -119,13 +123,17 @@ Infiniti.prototype.initialize = function initialize( date ){
 		typeof date[ 1 ] == NUMBER &&
 		date[ 0 ].toString( ).length == 17 )
 	{
-		this.offset = date[ 1 ];
+		this.date = moment( date[ 0 ], "YYYYMMDDHHmmssSSS" )
+			.hour( 0 )
+			.minute( 0 )
+			.second( 0 )
+			.millisecond( 0 );
 
-		this.date = moment( date[ 0 ], "YYYYMMDDHHmmssSSS" );
+		this.offset = date[ 1 ];
 
 		this.persist( );
 
-	}else if( typeof date == "string" &&
+	}else if( typeof date == STRING &&
 		date.length == 31 &&
 		( /^\-[\d\u200b]{30}|^[\d\u200b]{31}$/ ).test( date ) )
 	{
@@ -133,11 +141,15 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.parse( );
 
-	}else if( typeof date == "string" &&
+	}else if( typeof date == STRING &&
 		date )
 	{
 		try{
-			date = moment( date );
+			date = moment( date )
+				.hour( 0 )
+				.minute( 0 )
+				.second( 0 )
+				.millisecond( 0 );
 
 			if( date.isValid( ) ){
 				this.initialize( date.toDate( ) );
@@ -151,12 +163,20 @@ Infiniti.prototype.initialize = function initialize( date ){
 		}
 
 	}else if( date instanceof Date ){
-		this.date = moment( date );
+		this.date = moment( date )
+			.hour( 0 )
+			.minute( 0 )
+			.second( 0 )
+			.millisecond( 0 );
 
 		this.persist( );
 
 	}else{
-		this.date = moment( new Date( ) );
+		this.date = moment( new Date( ) )
+			.hour( 0 )
+			.minute( 0 )
+			.second( 0 )
+			.millisecond( 0 );
 
 		this.persist( );
 	}
@@ -207,7 +227,7 @@ Infiniti.prototype.persist = function persist( ){
 */
 Infiniti.prototype.parse = function parse( ){
 	var date = this.date;
-	if( typeof this.date == "string" ){
+	if( typeof this.date == STRING ){
 		date = U200b( this.date ).separate( );
 
 	}else if( this.trueDate ){
@@ -249,7 +269,7 @@ Infiniti.prototype.parse = function parse( ){
 	@end-method-documentation
 */
 Infiniti.prototype.relativeDate = function relativeDate( ){
-	return this.date.utc( ).utcOffset( this.offset ).format( "YYYY-MM-DD" ) + "T00:00:00.000";
+	return this.date.utc( ).utcOffset( this.offset ).format( "YYYY-MM-DDTHH:mm:ss:SSS" );
 };
 
 /*;
@@ -261,7 +281,7 @@ Infiniti.prototype.relativeDate = function relativeDate( ){
 	@end-method-documentation
 */
 Infiniti.prototype.realDate = function realDate( ){
-	return this.date.utc( ).format( "YYYY-MM-DD" ) + "T00:00:00.000";
+	return this.date.utc( ).format( "YYYY-MM-DDTHH:mm:ss:SSS" );
 };
 
 /*;
