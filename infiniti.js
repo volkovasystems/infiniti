@@ -123,13 +123,14 @@ Infiniti.prototype.initialize = function initialize( date ){
 		typeof date[ 1 ] == NUMBER &&
 		date[ 0 ].toString( ).length == 17 )
 	{
-		this.date = moment( date[ 0 ], "YYYYMMDDHHmmssSSS" )
+		this.offset = date[ 1 ];
+
+		this.date = moment.utc( date[ 0 ], "YYYYMMDDHHmmssSSS" )
 			.hour( 0 )
 			.minute( 0 )
 			.second( 0 )
-			.millisecond( 0 );
-
-		this.offset = date[ 1 ];
+			.millisecond( 0 )
+			.utcOffset( this.offset );
 
 		this.persist( );
 
