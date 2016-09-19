@@ -125,8 +125,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 	{
 		this.offset = date[ 1 ];
 
-		this.date = moment.utc( date[ 0 ], "YYYYMMDDHHmmssSSS" )
-			.hour( 0 )
+		this.date = moment.utc( date[ 0 ], "YYYYMMDDHH" )
 			.minute( 0 )
 			.second( 0 )
 			.millisecond( 0 )
@@ -147,7 +146,6 @@ Infiniti.prototype.initialize = function initialize( date ){
 	{
 		try{
 			date = moment( date )
-				.hour( 0 )
 				.minute( 0 )
 				.second( 0 )
 				.millisecond( 0 );
@@ -165,7 +163,6 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 	}else if( date instanceof Date ){
 		this.date = moment( date )
-			.hour( 0 )
 			.minute( 0 )
 			.second( 0 )
 			.millisecond( 0 );
@@ -174,7 +171,6 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 	}else{
 		this.date = moment( new Date( ) )
-			.hour( 0 )
 			.minute( 0 )
 			.second( 0 )
 			.millisecond( 0 );
@@ -207,7 +203,7 @@ Infiniti.prototype.persist = function persist( ){
 		date.getUTCFullYear( ),
 		( "0" + ( date.getUTCMonth( ) + 1 ) ).slice( -2 ),
 		( "0" + ( date.getUTCDate( ) ) ).slice( -2 ),
-		"00",
+		( "0" + ( date.getUTCHours( ) ) ).slice( -2 ),
 		"00",
 		"00",
 		"000",
@@ -246,7 +242,7 @@ Infiniti.prototype.parse = function parse( ){
 		.year( parseInt( date[ 1 ] ) )
 		.month( parseInt( date[ 2 ] ) - 1 )
 		.date( parseInt( date[ 3 ] ) )
-		.hour( 0 )
+		.hour( parseInt( date[ 4 ] ) )
 		.minute( 0 )
 		.second( 0 )
 		.millisecond( 0 );
@@ -264,7 +260,7 @@ Infiniti.prototype.parse = function parse( ){
 		Relative date is the date applied with UTC offset.
 
 		This will return the date in ISO8601 format.
-			@code:YYYY-MM-DDT00:00:00.000;
+			@code:YYYY-MM-DDTHH:00:00.000;
 
 		Do not use this to reference true date.
 	@end-method-documentation
@@ -278,7 +274,7 @@ Infiniti.prototype.relativeDate = function relativeDate( ){
 		Real date is the date with no UTC offset applied.
 
 		This will return the date in ISO8601
-			@code:YYYY-MM-DDT00:00:00.000;
+			@code:YYYY-MM-DDTHH:00:00.000;
 	@end-method-documentation
 */
 Infiniti.prototype.realDate = function realDate( ){
@@ -335,14 +331,18 @@ Infiniti.prototype.printDate = function printDate( separator, complete ){
 
 /*;
 	@method-documentation:
-		Returns a numerical representation of true date.
+		Returns a numerical representation of true date in UTC.
+
+		Time part is excluded except the hour.
 	@end-method-documentation
 */
 Infiniti.prototype.compact = function compact( ){
 	return [
-		parseInt( this.date.utc( ).format( "YYYYMMDDHHmmssSSS" ) ),
+		this.date.utc( ).format( "YYYYMMDDHH" ),
 		this.offset
-	];
+	].map( function onEachToken( token ){
+		return parseInt( token.toString( ) );
+	} );
 };
 
 if( asea.server ){
