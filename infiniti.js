@@ -34,6 +34,9 @@
 			"file": "infiniti.js",
 			"module": "infiniti",
 			"author": "Richeve S. Bebedor",
+			"contributors": [
+				"John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+			],
 			"eMail": "richeve.bebedor@gmail.com",
 			"repository": "https://github.com:volkovasystems/infiniti.git",
 			"test": "infiniti-test.js",
@@ -58,52 +61,17 @@
 	@end-include
 */
 
-if( typeof window == "undefined" ){
-	var asea = require( "asea" );
-	var diatom = require( "diatom" );
-	var harden = require( "harden" );
-	var moment = require( "moment" );
-	var optfor = require( "optfor" );
-	var U200b = require( "u200b" );
-}
+const asea = require( "asea" );
+const clazof = require( "clazof" );
+const diatom = require( "diatom" );
+const doubt = require( "doubt" );
+const harden = require( "harden" );
+const moment = require( "moment" );
+const optfor = require( "optfor" );
+const protype = require( "protype" );
+const U200b = require( "u200b" );
 
-if( typeof window != "undefined" &&
-	!( "asea" in window ) )
-{
-	throw new Error( "asea is not defined" );
-}
-
-if( asea.client &&
-	!( "diatom" in window ) )
-{
-	throw new Error( "diatom is not defined" );
-}
-
-if( asea.client &&
-	!( "harden" in window ) )
-{
-	throw new Error( "harden is not defined" );
-}
-
-if( asea.client &&
-	!( "moment" in window ) )
-{
-	throw new Error( "moment is not defined" );
-}
-
-if( asea.client &&
-	!( "optfor" in window ) )
-{
-	throw new Error( "optfor is not defined" );
-}
-
-if( asea.client &&
-	!( "U200b" in window ) )
-{
-	throw new Error( "U200b is not defined" );
-}
-
-var Infiniti = diatom( "Infiniti" );
+const Infiniti = diatom( "Infiniti" );
 
 harden( "now", function now( ){
 	return Infiniti( ).compact( );
@@ -118,9 +86,9 @@ Infiniti.prototype.valueOf = function valueOf( ){
 };
 
 Infiniti.prototype.initialize = function initialize( date ){
-	if( Array.isArray( date ) &&
-		typeof date[ 0 ] == NUMBER &&
-		typeof date[ 1 ] == NUMBER &&
+	if( doubt( date ).ARRAY &&
+		protype( date[ 0 ], NUMBER ) &&
+		protype( date[ 1 ], NUMBER ) &&
 		date[ 0 ].toString( ).length == 17 )
 	{
 		this.offset = date[ 1 ];
@@ -133,7 +101,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.persist( );
 
-	}else if( typeof date == STRING &&
+	}else if( protype( date, STRING ) &&
 		date.length == 31 &&
 		( /^\-[\d\u200b]{30}|^[\d\u200b]{31}$/ ).test( date ) )
 	{
@@ -141,7 +109,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.parse( );
 
-	}else if( typeof date == STRING &&
+	}else if( protype( date, STRING ) &&
 		date )
 	{
 		try{
@@ -161,7 +129,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 			throw new Error( "error encountered while parsing, " + error.message );
 		}
 
-	}else if( date instanceof Date ){
+	}else if( clazof( date, Date ) ){
 		this.date = moment( date )
 			.minute( 0 )
 			.second( 0 )
@@ -193,12 +161,12 @@ Infiniti.prototype.persist = function persist( ){
 		return this.trueDate;
 	}
 
-	var date = this.date.toDate( );
+	let date = this.date.toDate( );
 
-	var offset = this.offset || this.date.utcOffset( );
-	var polarity = offset / Math.abs( offset );
+	let offset = this.offset || this.date.utcOffset( );
+	let polarity = offset / Math.abs( offset );
 
-	var trueDate = U200b( [
+	let trueDate = U200b( [
 		polarity.toString( ).replace( /\d+/, "" ) || "0",
 		date.getUTCFullYear( ),
 		( "0" + ( date.getUTCMonth( ) + 1 ) ).slice( -2 ),
@@ -223,8 +191,8 @@ Infiniti.prototype.persist = function persist( ){
 	@end-method-documentation
 */
 Infiniti.prototype.parse = function parse( ){
-	var date = this.date;
-	if( typeof this.date == STRING ){
+	let date = this.date;
+	if( protype( this.date, STRING ) ){
 		date = U200b( this.date ).separate( );
 
 	}else if( this.trueDate ){
@@ -234,7 +202,7 @@ Infiniti.prototype.parse = function parse( ){
 		throw new Error( "date not specified" );
 	}
 
-	var polarity = parseInt( date[ 0 ] + 1 );
+	let polarity = parseInt( date[ 0 ] + 1 );
 
 	this.offset = polarity * parseInt( date[ 8 ] );
 
@@ -315,7 +283,7 @@ Infiniti.prototype.printDate = function printDate( separator, complete ){
 
 	complete = optfor( arguments, BOOLEAN );
 
-	if( typeof separator != "string" ){
+	if( !protype( separator, STRING ) ){
 		separator = " | ";
 	}
 
@@ -345,6 +313,4 @@ Infiniti.prototype.compact = function compact( ){
 	} );
 };
 
-if( asea.server ){
-	module.exports = Infiniti;
-}
+module.exports = Infiniti;

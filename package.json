@@ -1,10 +1,13 @@
 {
   "name": "infiniti",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Persist date as true date.",
   "main": "infiniti.js",
+  "support": "infiniti.support.js",
+  "deploy": "infiniti.deploy.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel infiniti.js -o infiniti.support.js && webpack",
+    "test": "mocha infiniti-test.js"
   },
   "repository": {
     "type": "git",
@@ -17,17 +20,34 @@
     "infiniti"
   ],
   "author": "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+  "contributors": [
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/volkovasystems/infiniti/issues"
   },
   "homepage": "https://github.com/volkovasystems/infiniti#readme",
   "dependencies": {
-    "asea": "^0.1.2",
-    "diatom": "^0.2.4",
-    "harden": "^0.3.5",
-    "moment": "^2.15.0",
-    "optfor": "^0.2.0",
-    "u200b": "^0.2.3"
+    "asea": "^0.6.0",
+    "babel-runtime": "^6.20.0",
+    "clazof": "^0.1.0",
+    "diatom": "^0.4.0",
+    "doubt": "^0.6.0",
+    "falzy": "^0.7.0",
+    "harden": "^0.12.0",
+    "moment": "^2.17.1",
+    "optfor": "^0.6.0",
+    "protype": "^0.7.0",
+    "truly": "^0.5.0",
+    "u200b": "^0.7.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.21.0",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-latest": "^6.16.0",
+    "source-map-loader": "^0.1.5",
+    "webpack": "^1.14.0"
   }
 }
