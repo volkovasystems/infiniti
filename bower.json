@@ -1,10 +1,13 @@
 {
   "name": "infiniti",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Persist date as true date.",
   "main": "infiniti.js",
+  "support": "infiniti.support.js",
+  "deploy": "infiniti.deploy.js",
   "authors": [
-    "Richeve S. Bebedor <richeve.bebedor@gmail.com>"
+    "Richeve S. Bebedor <richeve.bebedor@gmail.com>",
+    "John Lenon Maghanoy <johnlenonmaghanoy@gmail.com>"
   ],
   "license": "MIT",
   "keywords": [
@@ -22,11 +25,14 @@
     "tests"
   ],
   "dependencies": {
-    "asea": "^0.1.2",
-    "diatom": "^0.2.4",
-    "harden": "^0.3.5",
-    "moment": "^2.15.0",
-    "optfor": "^0.2.0",
-    "u200b": "^0.2.3"
+    "asea": "^0.6.0",
+    "clazof": "^0.1.0",
+    "diatom": "^0.4.0",
+    "doubt": "^0.6.0",
+    "harden": "^0.12.0",
+    "moment": "^2.17.1",
+    "optfor": "^0.6.0",
+    "protype": "^0.7.0",
+    "u200b": "^0.6.0"
   }
 }
