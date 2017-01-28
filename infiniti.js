@@ -51,25 +51,43 @@
 
 	@include:
 		{
-			"asea": "asea",
+			"clazof": "clazof",
+			"depher": "depher",
 			"diatom": "diatom",
+			"doubt": "doubt",
+			"falze": "falze",
+			"falzy": "falzy",
 			"harden": "harden",
 			"moment": "moment",
 			"optfor": "optfor",
+			"protype": "protype",
+			"raze": "raze",
+			"truly": "truly",
 			"U200b": "u200b"
 		}
 	@end-include
 */
 
-const asea = require( "asea" );
 const clazof = require( "clazof" );
+const depher = require( "depher" );
 const diatom = require( "diatom" );
 const doubt = require( "doubt" );
+const falze = require( "falze" );
+const falzy = require( "falzy" );
 const harden = require( "harden" );
 const moment = require( "moment" );
 const optfor = require( "optfor" );
 const protype = require( "protype" );
+const raze = require( "raze" );
+const truly = require( "truly" );
 const U200b = require( "u200b" );
+
+const COMPACT_FORMAT = "YYYYMMDDHH";
+const DEFAULT_SEPARATOR = " | ";
+const ISO8601_FORMAT = "YYYY-MM-DDTHH:00:00";
+const NUMERIC_PATTERN = /\d+/;
+const SIMPLE_DATE_FORMAT = "MMMM DD, YYYY";
+const TRUE_DATE_PATTERN = /^\-[\d\u200b]{30}|^[\d\u200b]{31}$/;
 
 const Infiniti = diatom( "Infiniti" );
 
@@ -86,14 +104,26 @@ Infiniti.prototype.valueOf = function valueOf( ){
 };
 
 Infiniti.prototype.initialize = function initialize( date ){
-	if( doubt( date ).ARRAY &&
+	/*;
+		@meta-configuration:
+			{
+				"date:required": [
+					[ "number", "number" ],
+					"string",
+					Date
+				]
+			}
+		@end-meta-configuration
+	*/
+
+	if( doubt( date, ARRAY ) &&
 		protype( date[ 0 ], NUMBER ) &&
 		protype( date[ 1 ], NUMBER ) &&
 		date[ 0 ].toString( ).length == 17 )
 	{
 		this.offset = date[ 1 ];
 
-		this.date = moment.utc( date[ 0 ], "YYYYMMDDHH" )
+		this.date = moment.utc( date[ 0 ], COMPACT_FORMAT )
 			.minute( 0 )
 			.second( 0 )
 			.millisecond( 0 )
@@ -101,17 +131,12 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.persist( );
 
-	}else if( protype( date, STRING ) &&
-		date.length == 31 &&
-		( /^\-[\d\u200b]{30}|^[\d\u200b]{31}$/ ).test( date ) )
-	{
+	}else if( protype( date, STRING ) && date.length == 27 && TRUE_DATE_PATTERN.test( date ) ){
 		this.date = date;
 
 		this.parse( );
 
-	}else if( protype( date, STRING ) &&
-		date )
-	{
+	}else if( protype( date, STRING ) && truly( date ) ){
 		try{
 			date = moment( date )
 				.minute( 0 )
@@ -122,11 +147,11 @@ Infiniti.prototype.initialize = function initialize( date ){
 				this.initialize( date.toDate( ) );
 
 			}else{
-				throw new Error( "invalid format, " + arguments[ 0 ] );
+				throw new Error( `invalid date format, ${ arguments[ 0 ] }` );
 			}
 
 		}catch( error ){
-			throw new Error( "error encountered while parsing, " + error.message );
+			throw new Error( `error encountered while parsing date, ${ error }` );
 		}
 
 	}else if( clazof( date, Date ) ){
@@ -157,24 +182,48 @@ Infiniti.prototype.initialize = function initialize( date ){
 	@end-method-documentation
 */
 Infiniti.prototype.persist = function persist( ){
-	if( this.trueDate ){
+	if( truly( this.trueDate ) ){
 		return this.trueDate;
 	}
 
 	let date = this.date.toDate( );
 
 	let offset = this.offset || this.date.utcOffset( );
-	let polarity = offset / Math.abs( offset );
+	try{
+		offset = parseInt( offset );
+
+	}catch( error ){
+		throw new Error( `invalid timezone offset, ${ error }` );
+	}
+
+	let polarity = 0;
+	if( offset != 0 ){
+		polarity = offset / Math.abs( offset );
+	}
 
 	let trueDate = U200b( [
-		polarity.toString( ).replace( /\d+/, "" ) || "0",
+		//: positive / negative offset
+		polarity.toString( ).replace( NUMERIC_PATTERN, "" ) || "0",
+
+		//: year
 		date.getUTCFullYear( ),
+
+		//: month
 		( "0" + ( date.getUTCMonth( ) + 1 ) ).slice( -2 ),
+
+		//: day
 		( "0" + ( date.getUTCDate( ) ) ).slice( -2 ),
+
+		//: hour
 		( "0" + ( date.getUTCHours( ) ) ).slice( -2 ),
+
+		//: minute
 		"00",
+
+		//: second
 		"00",
-		"000",
+
+		//: offset
 		( "000" + Math.abs( offset ) ).slice( -5 )
 	] ).join( );
 
@@ -192,28 +241,34 @@ Infiniti.prototype.persist = function persist( ){
 */
 Infiniti.prototype.parse = function parse( ){
 	let date = this.date;
+
 	if( protype( this.date, STRING ) ){
 		date = U200b( this.date ).separate( );
 
-	}else if( this.trueDate ){
+	}else if( truly( this.trueDate ) ){
 		date = U200b( this.trueDate ).separate( );
 
 	}else{
 		throw new Error( "date not specified" );
 	}
 
-	let polarity = parseInt( date[ 0 ] + 1 );
+	try{
+		let polarity = parseInt( date[ 0 ] + 1 );
 
-	this.offset = polarity * parseInt( date[ 8 ] );
+		this.offset = polarity * parseInt( date[ 8 ] );
 
-	date = moment.utc( )
-		.year( parseInt( date[ 1 ] ) )
-		.month( parseInt( date[ 2 ] ) - 1 )
-		.date( parseInt( date[ 3 ] ) )
-		.hour( parseInt( date[ 4 ] ) )
-		.minute( 0 )
-		.second( 0 )
-		.millisecond( 0 );
+		date = moment.utc( )
+			.year( parseInt( date[ 1 ] ) )
+			.month( parseInt( date[ 2 ] ) - 1 )
+			.date( parseInt( date[ 3 ] ) )
+			.hour( parseInt( date[ 4 ] ) )
+			.minute( 0 )
+			.second( 0 )
+			.millisecond( 0 );
+
+	}catch( error ){
+		throw new Error( `error parsing true date, ${ error }` );
+	}
 
 	//: This will set the timezone of the Date object to the machine timezone.
 	this.date = date;
@@ -228,13 +283,22 @@ Infiniti.prototype.parse = function parse( ){
 		Relative date is the date applied with UTC offset.
 
 		This will return the date in ISO8601 format.
-			@code:YYYY-MM-DDTHH:00:00.000;
+
+		`YYYY-MM-DDTHH:00:00`
 
 		Do not use this to reference true date.
 	@end-method-documentation
 */
 Infiniti.prototype.relativeDate = function relativeDate( ){
-	return this.date.utc( ).utcOffset( this.offset ).format( "YYYY-MM-DDTHH:mm:ss:SSS" );
+	if( falze( this.date ) ){
+		throw new Error( "internal date empty" );
+	}
+
+	if( falzy( this.offset ) ){
+		throw new Error( "internal timezone offset empty" );
+	}
+
+	return this.date.utc( ).utcOffset( this.offset ).format( ISO8601_FORMAT );
 };
 
 /*;
@@ -242,11 +306,16 @@ Infiniti.prototype.relativeDate = function relativeDate( ){
 		Real date is the date with no UTC offset applied.
 
 		This will return the date in ISO8601
-			@code:YYYY-MM-DDTHH:00:00.000;
+
+		`YYYY-MM-DDTHH:00:00`
 	@end-method-documentation
 */
 Infiniti.prototype.realDate = function realDate( ){
-	return this.date.utc( ).format( "YYYY-MM-DDTHH:mm:ss:SSS" );
+	if( falze( this.date ) ){
+		throw new Error( "internal date empty" );
+	}
+
+	return this.date.utc( ).format( ISO8601_FORMAT );
 };
 
 /*;
@@ -257,7 +326,15 @@ Infiniti.prototype.realDate = function realDate( ){
 	@end-method-documentation
 */
 Infiniti.prototype.getDate = function getDate( ){
-	return this.date.utc( ).utcOffset( this.offset ).format( "MMMM DD, YYYY" );
+	if( falze( this.date ) ){
+		throw new Error( "internal date empty" );
+	}
+
+	if( falzy( this.offset ) ){
+		throw new Error( "internal timezone offset empty" );
+	}
+
+	return this.date.utc( ).utcOffset( this.offset ).format( SIMPLE_DATE_FORMAT );
 };
 
 /*;
@@ -279,15 +356,16 @@ Infiniti.prototype.printDate = function printDate( separator, complete ){
 		@end-meta-configuration
 	*/
 
-	separator = optfor( arguments, STRING );
+	let parameter = raze( arguments );
 
-	complete = optfor( arguments, BOOLEAN );
+	separator = optfor( parameter, STRING );
 
+	separator = separator || DEFAULT_SEPARATOR;
 	if( !protype( separator, STRING ) ){
-		separator = " | ";
+		separator = DEFAULT_SEPARATOR;
 	}
 
-	separator = separator || " | ";
+	complete = depher( parameter, BOOLEAN, false );
 
 	if( complete ){
 		return [ this.getDate( ), this.trueDate ].join( separator );
@@ -305,12 +383,8 @@ Infiniti.prototype.printDate = function printDate( separator, complete ){
 	@end-method-documentation
 */
 Infiniti.prototype.compact = function compact( ){
-	return [
-		this.date.utc( ).format( "YYYYMMDDHH" ),
-		this.offset
-	].map( function onEachToken( token ){
-		return parseInt( token.toString( ) );
-	} );
+	return [ this.date.utc( ).format( COMPACT_FORMAT ), this.offset ]
+		.map( function onEachToken( token ){ return parseInt( token.toString( ) ); } );
 };
 
 module.exports = Infiniti;
