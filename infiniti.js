@@ -87,7 +87,7 @@ const DEFAULT_SEPARATOR = " | ";
 const ISO8601_FORMAT = "YYYY-MM-DDTHH:00:00";
 const NUMERIC_PATTERN = /\d+/;
 const SIMPLE_DATE_FORMAT = "MMMM DD, YYYY";
-const TRUE_DATE_PATTERN = /^\-[\d\u200b]{30}|^[\d\u200b]{31}$/;
+const TRUE_DATE_PATTERN = /^\-[\d\u200b]{26}|^[\d\u200b]{27}$/;
 
 const Infiniti = diatom( "Infiniti" );
 
@@ -119,7 +119,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 	if( doubt( date, ARRAY ) &&
 		protype( date[ 0 ], NUMBER ) &&
 		protype( date[ 1 ], NUMBER ) &&
-		date[ 0 ].toString( ).length == 17 )
+		date[ 0 ].toString( ).length == 10 )
 	{
 		this.offset = date[ 1 ];
 
@@ -136,7 +136,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.parse( );
 
-	}else if( protype( date, STRING ) && truly( date ) ){
+	}else if( truly( date ) && protype( date, STRING ) ){
 		try{
 			date = moment( date )
 				.minute( 0 )
@@ -255,7 +255,7 @@ Infiniti.prototype.parse = function parse( ){
 	try{
 		let polarity = parseInt( date[ 0 ] + 1 );
 
-		this.offset = polarity * parseInt( date[ 8 ] );
+		this.offset = polarity * parseInt( date[ 7 ] );
 
 		date = moment.utc( )
 			.year( parseInt( date[ 1 ] ) )

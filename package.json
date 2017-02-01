@@ -1,6 +1,6 @@
 {
   "name": "infiniti",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Persist date as true date.",
   "main": "infiniti.js",
   "support": "infiniti.support.js",
@@ -32,7 +32,7 @@
     "babel-runtime": "^6.22.0",
     "clazof": "^0.5.0",
     "depher": "^0.8.0",
-    "diatom": "^0.5.0",
+    "diatom": "^0.7.0",
     "doubt": "^0.10.0",
     "falze": "^0.5.0",
     "falzy": "^0.10.0",
@@ -50,6 +50,6 @@
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-latest": "^6.22.0",
     "source-map-loader": "^0.1.6",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1"
   }
 }
