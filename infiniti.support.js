@@ -62,6 +62,7 @@
               			"optfor": "optfor",
               			"protype": "protype",
               			"raze": "raze",
+              			"stringe": "stringe",
               			"truly": "truly",
               			"U200b": "u200b"
               		}
@@ -80,6 +81,7 @@ var optfor = require("optfor");
 var protype = require("protype");
 var raze = require("raze");
 var truly = require("truly");
+var stringe = require("stringe");
 var U200b = require("u200b");
 
 var COMPACT_FORMAT = "YYYYMMDDHH";
@@ -119,7 +121,7 @@ Infiniti.prototype.initialize = function initialize(date) {
 	if (doubt(date, ARRAY) &&
 	protype(date[0], NUMBER) &&
 	protype(date[1], NUMBER) &&
-	date[0].toString().length == 10)
+	stringe(date[0]).length == 10)
 	{
 		this.offset = date[1];
 
@@ -203,7 +205,7 @@ Infiniti.prototype.persist = function persist() {
 
 	var trueDate = U200b([
 	//: positive / negative offset
-	polarity.toString().replace(NUMERIC_PATTERN, "") || "0",
+	stringe(polarity).replace(NUMERIC_PATTERN, "") || "0",
 
 	//: year
 	date.getUTCFullYear(),
@@ -384,7 +386,7 @@ Infiniti.prototype.printDate = function printDate(separator, complete) {
    */
 Infiniti.prototype.compact = function compact() {
 	return [this.date.utc().format(COMPACT_FORMAT), this.offset].
-	map(function onEachToken(token) {return parseInt(token.toString());});
+	map(function onEachToken(token) {return parseInt(stringe(token));});
 };
 
 module.exports = Infiniti;
