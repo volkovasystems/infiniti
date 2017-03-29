@@ -153,7 +153,7 @@ Infiniti.prototype.initialize = function initialize( date ){
 			}
 
 		}catch( error ){
-			throw new Error( `error encountered while parsing date, ${ error }` );
+			throw new Error( `error encountered while parsing date, ${ error.stack }` );
 		}
 
 	}else if( clazof( date, Date ) ){
@@ -195,7 +195,7 @@ Infiniti.prototype.persist = function persist( ){
 		offset = parseInt( offset );
 
 	}catch( error ){
-		throw new Error( `invalid timezone offset, ${ error }` );
+		throw new Error( `invalid timezone offset, ${ error.stack }` );
 	}
 
 	let polarity = 0;
@@ -269,7 +269,7 @@ Infiniti.prototype.parse = function parse( ){
 			.millisecond( 0 );
 
 	}catch( error ){
-		throw new Error( `error parsing true date, ${ error }` );
+		throw new Error( `error parsing true date, ${ error.stack }` );
 	}
 
 	//: This will set the timezone of the Date object to the machine timezone.
