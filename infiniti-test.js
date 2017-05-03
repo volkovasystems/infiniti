@@ -1,31 +1,23 @@
 "use strict";
 
+const assert = require( "assert" );
 const Infiniti = require( "./infiniti.js" );
 
 let sample1 = new Date( "8/15/2016" );
 
-console.log( Infiniti( sample1 ).printDate( ) );
-
-console.log( Infiniti( sample1 ).getDate( ) );
-
-console.log( Infiniti( sample1 ).realDate( ) );
-
-console.log( Infiniti( sample1 ).relativeDate( ) );
+assert.equal( Infiniti( sample1 ).printDate( ), "August 15, 2016" );
+assert.equal( Infiniti( sample1 ).getDate( ), "August 15, 2016" );
+assert.equal( Infiniti( sample1 ).realDate( ), "2016-08-14T16:00:00" );
+assert.equal( Infiniti( sample1 ).relativeDate( ), "2016-08-15T00:00:00" );
 
 let Infiniti_date = Infiniti( sample1 ).trueDate;
-
-console.log( "True Date", Infiniti_date );
+assert.equal( Infiniti_date, "0​2016​08​14​16​00​00​00480" );
 
 let compact1 = Infiniti( sample1 ).compact( );
-
-console.log( "Compact", compact1 );
+assert.deepEqual( compact1, [ 2016081416, 480 ] );
 
 let comparison1 = Infiniti( Infiniti_date ).parse( );
-
-console.log( "Comparison1", comparison1  );
-
 let comparison2 = Infiniti( compact1 ).parse( );
+assert.equal( comparison1.trueDate, comparison2.trueDate );
 
-console.log( "Comparison2", comparison2 );
-
-console.log( comparison1.trueDate === comparison2.trueDate );
+console.log( "ok" );
