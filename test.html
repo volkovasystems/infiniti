@@ -1,8 +1,41 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		<script
-			type="application/javascript"
-			src="./infiniti.deploy.js">
-		</script>
+		<title>infiniti unit test</title>
+
+		<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+
+		<script type="application/javascript" src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
+
+		<script type="application/javascript" src="./infiniti.deploy.js"></script>
 	</head>
+
+	<body>
+		<div id="qunit"></div>
+
+		<div id="qunit-fixture"></div>
+
+		<script type="application/javascript">
+			QUnit.test( "infiniti unit test", function( assert ) {
+
+				let sample1 = new Date( "8/15/2016" );
+
+				assert.equal( infiniti( sample1 ).printDate( ), "August 15, 2016", "should be equal" );
+				assert.equal( infiniti( sample1 ).getDate( ), "August 15, 2016", "should be equal" );
+				assert.equal( infiniti( sample1 ).realDate( ), "2016-08-14T16:00:00", "should be equal" );
+				assert.equal( infiniti( sample1 ).relativeDate( ), "2016-08-15T00:00:00", "should be equal" );
+
+				let infiniti_date = infiniti( sample1 ).trueDate;
+				assert.equal( infiniti_date, "0​2016​08​14​16​00​00​00480", "should be equal" );
+
+				let compact1 = infiniti( sample1 ).compact( );
+				assert.deepEqual( compact1, [ 2016081416, 480 ], "should be deeply equal" );
+
+				let comparison1 = infiniti( infiniti_date ).parse( );
+				let comparison2 = infiniti( compact1 ).parse( );
+				assert.equal( comparison1.trueDate, comparison2.trueDate, "should be equal" );
+
+			} );
+		</script>
+	</body>
 </html>
