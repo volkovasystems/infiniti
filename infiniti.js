@@ -61,7 +61,6 @@
 			"harden": "harden",
 			"moment": "moment",
 			"optfor": "optfor",
-			"protype": "protype",
 			"raze": "raze",
 			"stringe": "stringe",
 			"truly": "truly",
@@ -79,7 +78,6 @@ const falzy = require( "falzy" );
 const harden = require( "harden" );
 const moment = require( "moment" );
 const optfor = require( "optfor" );
-const protype = require( "protype" );
 const raze = require( "raze" );
 const truly = require( "truly" );
 const stringe = require( "stringe" );
@@ -120,8 +118,8 @@ Infiniti.prototype.initialize = function initialize( date ){
 	*/
 
 	if( doubt( date, ARRAY ) &&
-		protype( date[ 0 ], NUMBER ) &&
-		protype( date[ 1 ], NUMBER ) &&
+		typeof date[ 0 ] == "number" &&
+		typeof date[ 1 ] == "number" &&
 		stringe( date[ 0 ] ).length == 10 )
 	{
 		this.offset = date[ 1 ];
@@ -134,12 +132,12 @@ Infiniti.prototype.initialize = function initialize( date ){
 
 		this.persist( );
 
-	}else if( protype( date, STRING ) && date.length == 27 && TRUE_DATE_PATTERN.test( date ) ){
+	}else if( typeof date == "string" && date.length == 27 && TRUE_DATE_PATTERN.test( date ) ){
 		this.date = date;
 
 		this.parse( );
 
-	}else if( truly( date ) && protype( date, STRING ) ){
+	}else if( truly( date ) && typeof date == "string" ){
 		try{
 			date = moment( date )
 				.minute( 0 )
@@ -245,7 +243,7 @@ Infiniti.prototype.persist = function persist( ){
 Infiniti.prototype.parse = function parse( ){
 	let date = this.date;
 
-	if( protype( this.date, STRING ) ){
+	if( typeof this.date == "string" ){
 		date = U200b( this.date ).separate( );
 
 	}else if( truly( this.trueDate ) ){
@@ -364,7 +362,7 @@ Infiniti.prototype.printDate = function printDate( separator, complete ){
 	separator = optfor( parameter, STRING );
 
 	separator = separator || DEFAULT_SEPARATOR;
-	if( !protype( separator, STRING ) ){
+	if( typeof separator != "string" ){
 		separator = DEFAULT_SEPARATOR;
 	}
 
