@@ -1,44 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>infiniti unit test</title>
+		<meta charset="utf-8">
 
-		<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.3.2.css">
+		<title>test:infiniti</title>
 
-		<script type="application/javascript" src="https://code.jquery.com/qunit/qunit-2.3.2.js"></script>
-
-		<script type="application/javascript" src="./infiniti.deploy.js"></script>
+		<link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css"/>
 	</head>
 
 	<body>
-		<div id="qunit"></div>
+		<div id="mocha"></div>
 
-		<div id="qunit-fixture"></div>
+		<script type="application/javascript" src="https://unpkg.com/mocha/mocha.js"></script>
 
 		<script type="application/javascript">
-			QUnit.test( "infiniti unit test", function( assert ) {
+			mocha.setup( "bdd" );
+		</script>
 
-				const Infiniti = infiniti;
+		<script type="application/javascript" src="./test.deploy.js"></script>
 
-				let sample1 = new Date( "8/15/2016" );
-
-				assert.equal( Infiniti( sample1 ).printDate( ), "August 15, 2016", "should be equal to 'August 15, 2016'" );
-				assert.equal( Infiniti( sample1 ).getDate( ), "August 15, 2016", "should be equal to 'August 15, 2016'" );
-				assert.equal( Infiniti( sample1 ).realDate( ), "2016-08-14T16:00:00", "should be equal to '2016-08-14T16:00:00'" );
-				assert.equal( Infiniti( sample1 ).relativeDate( ), "2016-08-15T00:00:00", "should be equal to '2016-08-15T00:00:00'" );
-
-				let Infiniti_date = Infiniti( sample1 ).trueDate;
-				assert.equal( Infiniti_date, "0​2016​08​14​16​00​00​00480", "should be equal to '0​2016​08​14​16​00​00​00480'" );
-
-				let compact1 = Infiniti( sample1 ).compact( );
-				assert.deepEqual( compact1, [ 2016081416, 480 ], "should be equal to [ 2016081416, 480 ]" );
-
-				let comparison1 = Infiniti( Infiniti_date ).parse( );
-				let comparison2 = Infiniti( compact1 ).parse( );
-				assert.equal( comparison1.trueDate, comparison2.trueDate,
-					"should have the same trueTime regardless of how many times it was parsed" );
-
-			} );
+		<script type="application/javascript">
+			mocha.run( );
 		</script>
 	</body>
 </html>

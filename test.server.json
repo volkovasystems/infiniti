@@ -1,0 +1,16 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 0,
+    "passes": 0,
+    "pending": 0,
+    "failures": 0,
+    "start": "2017-09-01T17:14:03.160Z",
+    "end": "2017-09-01T17:14:03.161Z",
+    "duration": 1
+  },
+  "tests": [],
+  "pending": [],
+  "failures": [],
+  "passes": []
+}
