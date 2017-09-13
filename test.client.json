@@ -1,0 +1,372 @@
+{
+	"state": {
+		"passed": 10,
+		"failed": 0,
+		"skipped": 0
+	},
+	"start": "2017-09-13T06:29:11.506Z",
+	"end": "2017-09-13T06:29:48.261Z",
+	"capabilities": {
+		"browserName": "chrome",
+		"chromeOptions": {
+			"args": [
+				"disable-gpu",
+				"headless"
+			]
+		},
+		"proxy": null
+	},
+	"host": "127.0.0.1",
+	"port": 4444,
+	"baseUrl": "http://localhost",
+	"framework": "mocha",
+	"mochaOpts": {
+		"timeout": 10000,
+		"ui": "bdd"
+	},
+	"suites": [
+		{
+			"name": "infiniti",
+			"duration": 0,
+			"start": "2017-09-13T06:29:47.312Z",
+			"tests": [],
+			"hooks": []
+		},
+		{
+			"name": "infiniti",
+			"duration": 772,
+			"start": "2017-09-13T06:29:47.313Z",
+			"end": "2017-09-13T06:29:48.085Z",
+			"tests": [],
+			"hooks": [
+				{
+					"start": "2017-09-13T06:29:47.315Z",
+					"end": "2017-09-13T06:29:47.315Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should persist date as true date"
+				},
+				{
+					"start": "2017-09-13T06:29:47.488Z",
+					"end": "2017-09-13T06:29:47.488Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should persist date as true date"
+				},
+				{
+					"start": "2017-09-13T06:29:47.490Z",
+					"end": "2017-09-13T06:29:47.490Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to 'August 15, 2016'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.554Z",
+					"end": "2017-09-13T06:29:47.554Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to 'August 15, 2016'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.555Z",
+					"end": "2017-09-13T06:29:47.555Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to 'August 15, 2016'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.613Z",
+					"end": "2017-09-13T06:29:47.613Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to 'August 15, 2016'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.613Z",
+					"end": "2017-09-13T06:29:47.613Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '2016-08-14T16:00:00'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.671Z",
+					"end": "2017-09-13T06:29:47.671Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '2016-08-14T16:00:00'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.671Z",
+					"end": "2017-09-13T06:29:47.671Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '2016-08-15T00:00:00'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.728Z",
+					"end": "2017-09-13T06:29:47.729Z",
+					"duration": 1,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '2016-08-15T00:00:00'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.729Z",
+					"end": "2017-09-13T06:29:47.729Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '0​2016​08​14​16​00​00​00480'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.791Z",
+					"end": "2017-09-13T06:29:47.791Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to '0​2016​08​14​16​00​00​00480'"
+				},
+				{
+					"start": "2017-09-13T06:29:47.792Z",
+					"end": "2017-09-13T06:29:47.792Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to [ 2016081416, 480 ]"
+				},
+				{
+					"start": "2017-09-13T06:29:47.857Z",
+					"end": "2017-09-13T06:29:47.857Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should be equal to [ 2016081416, 480 ]"
+				},
+				{
+					"start": "2017-09-13T06:29:47.861Z",
+					"end": "2017-09-13T06:29:47.864Z",
+					"duration": 3,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should decompose true date to a moment object"
+				},
+				{
+					"start": "2017-09-13T06:29:47.962Z",
+					"end": "2017-09-13T06:29:47.962Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should decompose true date to a moment object"
+				},
+				{
+					"start": "2017-09-13T06:29:47.963Z",
+					"end": "2017-09-13T06:29:47.964Z",
+					"duration": 1,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should decompose compact date to a moment object"
+				},
+				{
+					"start": "2017-09-13T06:29:48.025Z",
+					"end": "2017-09-13T06:29:48.025Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should decompose compact date to a moment object"
+				},
+				{
+					"start": "2017-09-13T06:29:48.025Z",
+					"end": "2017-09-13T06:29:48.025Z",
+					"duration": 0,
+					"title": "\"before each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should have the same trueDate regardless of how many times it was parsed"
+				},
+				{
+					"start": "2017-09-13T06:29:48.085Z",
+					"end": "2017-09-13T06:29:48.085Z",
+					"duration": 0,
+					"title": "\"after each\" hook",
+					"associatedSuite": "infiniti",
+					"associatedTest": "should have the same trueDate regardless of how many times it was parsed"
+				},
+				{
+					"start": "2017-09-13T06:29:48.085Z",
+					"end": "2017-09-13T06:29:48.085Z",
+					"duration": 0,
+					"title": "\"after all\" hook",
+					"associatedSuite": "infiniti"
+				}
+			]
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) )`",
+			"duration": 175,
+			"start": "2017-09-13T06:29:47.314Z",
+			"end": "2017-09-13T06:29:47.489Z",
+			"tests": [
+				{
+					"name": "should persist date as true date",
+					"start": "2017-09-13T06:29:47.314Z",
+					"end": "2017-09-13T06:29:47.488Z",
+					"duration": 174,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).printDate( )`",
+			"duration": 65,
+			"start": "2017-09-13T06:29:47.490Z",
+			"end": "2017-09-13T06:29:47.555Z",
+			"tests": [
+				{
+					"name": "should be equal to 'August 15, 2016'",
+					"start": "2017-09-13T06:29:47.490Z",
+					"end": "2017-09-13T06:29:47.554Z",
+					"duration": 64,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).getDate( )`",
+			"duration": 58,
+			"start": "2017-09-13T06:29:47.555Z",
+			"end": "2017-09-13T06:29:47.613Z",
+			"tests": [
+				{
+					"name": "should be equal to 'August 15, 2016'",
+					"start": "2017-09-13T06:29:47.555Z",
+					"end": "2017-09-13T06:29:47.612Z",
+					"duration": 57,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).realDate( )`",
+			"duration": 58,
+			"start": "2017-09-13T06:29:47.613Z",
+			"end": "2017-09-13T06:29:47.671Z",
+			"tests": [
+				{
+					"name": "should be equal to '2016-08-14T16:00:00'",
+					"start": "2017-09-13T06:29:47.613Z",
+					"end": "2017-09-13T06:29:47.671Z",
+					"duration": 58,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).relativeDate( )`",
+			"duration": 58,
+			"start": "2017-09-13T06:29:47.671Z",
+			"end": "2017-09-13T06:29:47.729Z",
+			"tests": [
+				{
+					"name": "should be equal to '2016-08-15T00:00:00'",
+					"start": "2017-09-13T06:29:47.671Z",
+					"end": "2017-09-13T06:29:47.728Z",
+					"duration": 57,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).trueDate`",
+			"duration": 62,
+			"start": "2017-09-13T06:29:47.729Z",
+			"end": "2017-09-13T06:29:47.791Z",
+			"tests": [
+				{
+					"name": "should be equal to '0​2016​08​14​16​00​00​00480'",
+					"start": "2017-09-13T06:29:47.729Z",
+					"end": "2017-09-13T06:29:47.790Z",
+					"duration": 61,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( new Date( '8/15/2016' ) ).compact( )`",
+			"duration": 66,
+			"start": "2017-09-13T06:29:47.792Z",
+			"end": "2017-09-13T06:29:47.858Z",
+			"tests": [
+				{
+					"name": "should be equal to [ 2016081416, 480 ]",
+					"start": "2017-09-13T06:29:47.792Z",
+					"end": "2017-09-13T06:29:47.857Z",
+					"duration": 65,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( '0​2016​08​14​16​00​00​00480' ).parse( )`",
+			"duration": 104,
+			"start": "2017-09-13T06:29:47.858Z",
+			"end": "2017-09-13T06:29:47.962Z",
+			"tests": [
+				{
+					"name": "should decompose true date to a moment object",
+					"start": "2017-09-13T06:29:47.859Z",
+					"end": "2017-09-13T06:29:47.961Z",
+					"duration": 102,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti( [ 2016081416, 480 ] ).parse( )`",
+			"duration": 63,
+			"start": "2017-09-13T06:29:47.962Z",
+			"end": "2017-09-13T06:29:48.025Z",
+			"tests": [
+				{
+					"name": "should decompose compact date to a moment object",
+					"start": "2017-09-13T06:29:47.962Z",
+					"end": "2017-09-13T06:29:48.025Z",
+					"duration": 63,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		},
+		{
+			"name": "`Infiniti parse with trueDate and compact date`",
+			"duration": 60,
+			"start": "2017-09-13T06:29:48.025Z",
+			"end": "2017-09-13T06:29:48.085Z",
+			"tests": [
+				{
+					"name": "should have the same trueDate regardless of how many times it was parsed",
+					"start": "2017-09-13T06:29:48.025Z",
+					"end": "2017-09-13T06:29:48.085Z",
+					"duration": 60,
+					"state": "pass"
+				}
+			],
+			"hooks": []
+		}
+	]
+}

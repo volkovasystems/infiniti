@@ -45,16 +45,16 @@
 
 	@include:
 		{
-			"assert": "should",
+			"assert": "should/as-function",
 			"infiniti": "infiniti"
 		}
 	@end-include
 */
 
-const assert = require( "should" );
+const assert = require( "should/as-function" );
 
 //: @server:
-const infiniti = require( "./infiniti.js" );
+const Infiniti = require( "./infiniti.js" );
 //: @end-server
 
 
@@ -63,13 +63,117 @@ const infiniti = require( "./infiniti.js" );
 
 
 //: @server:
-
 describe( "infiniti", ( ) => {
 
+	describe( "`Infiniti( new Date( '8/15/2016' ) )`", ( ) => {
+		it( "should persist date as true date", ( ) => {
+			const data = new Date( "8/15/2016" );
+			let result = Infiniti( data );
+
+			assert.equal( typeof result, "object" );
+
+			assert.equal( "date" in result, true );
+
+			assert.equal( "offset" in result, true );
+
+			assert.equal( "trueDate" in result, true );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).printDate( )`", ( ) => {
+		it( "should be equal to 'August 15, 2016'", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.equal( Infiniti( data ).printDate( ), "August 15, 2016" );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).getDate( )`", ( ) => {
+		it( "should be equal to 'August 15, 2016'", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.equal( Infiniti( data ).getDate( ), "August 15, 2016" );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).realDate( )`", ( ) => {
+		it( "should be equal to '2016-08-14T16:00:00'", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.equal( Infiniti( data ).realDate( ), "2016-08-14T16:00:00" );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).relativeDate( )`", ( ) => {
+		it( "should be equal to '2016-08-15T00:00:00'", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.equal( Infiniti( data ).relativeDate( ), "2016-08-15T00:00:00" );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).trueDate`", ( ) => {
+		it( "should be equal to '0​2016​08​14​16​00​00​00480'", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.equal( Infiniti( data ).trueDate, "0​2016​08​14​16​00​00​00480" );
+		} );
+	} );
+
+	describe( "`Infiniti( new Date( '8/15/2016' ) ).compact( )`", ( ) => {
+		it( "should be equal to [ 2016081416, 480 ]", ( ) => {
+			const data = new Date( "8/15/2016" );
+
+			assert.deepEqual( Infiniti( data ).compact( ), [ 2016081416, 480 ] );
+		} );
+	} );
+
+	describe( "`Infiniti( '0​2016​08​14​16​00​00​00480' ).parse( )`", ( ) => {
+		it( "should decompose true date to a moment object", ( ) => {
+			const data = "0​2016​08​14​16​00​00​00480";
+
+			let result = Infiniti( data ).parse( );
+
+			assert.equal( typeof result, "object" );
+
+			assert.equal( "date" in result, true );
+
+			assert.equal( "offset" in result, true );
+
+			assert.equal( "trueDate" in result, true );
+		} );
+	} );
+
+	describe( "`Infiniti( [ 2016081416, 480 ] ).parse( )`", ( ) => {
+		it( "should decompose compact date to a moment object", ( ) => {
+			const data = [ 2016081416, 480 ];
+
+			let result = Infiniti( data ).parse( );
+
+			assert.equal( typeof result, "object" );
+
+			assert.equal( "date" in result, true );
+
+			assert.equal( "offset" in result, true );
+
+			assert.equal( "trueDate" in result, true );
+		} );
+	} );
+
+	describe( "`Infiniti parse with trueDate and compact date`", ( ) => {
+		it( "should have the same trueDate regardless of how many times it was parsed", ( ) => {
+			const dataA = "0​2016​08​14​16​00​00​00480";
+			let testA = Infiniti( dataA ).parse( )
+
+			const dataB = [ 2016081416, 480 ];
+			let testB = Infiniti( dataB ).parse( );
+
+			assert.equal( dataA.trueDate, dataB.trueDate );
+		} );
+	} );
+
 } );
-
 //: @end-server
-
 
 
 

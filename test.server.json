@@ -1,16 +1,158 @@
 {
-  "stats": {
-    "suites": 0,
-    "tests": 0,
-    "passes": 0,
-    "pending": 0,
-    "failures": 0,
-    "start": "2017-09-01T17:14:03.160Z",
-    "end": "2017-09-01T17:14:03.161Z",
-    "duration": 1
-  },
-  "tests": [],
-  "pending": [],
-  "failures": [],
-  "passes": []
+	"stats": {
+		"suites": 11,
+		"tests": 10,
+		"passes": 10,
+		"pending": 0,
+		"failures": 0,
+		"start": "2017-09-13T06:29:10.377Z",
+		"end": "2017-09-13T06:29:10.405Z",
+		"duration": 28
+	},
+	"tests": [
+		{
+			"title": "should persist date as true date",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) )` should persist date as true date",
+			"duration": 5,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to 'August 15, 2016'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).printDate( )` should be equal to 'August 15, 2016'",
+			"duration": 4,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to 'August 15, 2016'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).getDate( )` should be equal to 'August 15, 2016'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '2016-08-14T16:00:00'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).realDate( )` should be equal to '2016-08-14T16:00:00'",
+			"duration": 3,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '2016-08-15T00:00:00'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).relativeDate( )` should be equal to '2016-08-15T00:00:00'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '0​2016​08​14​16​00​00​00480'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).trueDate` should be equal to '0​2016​08​14​16​00​00​00480'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to [ 2016081416, 480 ]",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).compact( )` should be equal to [ 2016081416, 480 ]",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should decompose true date to a moment object",
+			"fullTitle": "infiniti `Infiniti( '0​2016​08​14​16​00​00​00480' ).parse( )` should decompose true date to a moment object",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should decompose compact date to a moment object",
+			"fullTitle": "infiniti `Infiniti( [ 2016081416, 480 ] ).parse( )` should decompose compact date to a moment object",
+			"duration": 2,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should have the same trueDate regardless of how many times it was parsed",
+			"fullTitle": "infiniti `Infiniti parse with trueDate and compact date` should have the same trueDate regardless of how many times it was parsed",
+			"duration": 2,
+			"currentRetry": 0,
+			"err": {}
+		}
+	],
+	"pending": [],
+	"failures": [],
+	"passes": [
+		{
+			"title": "should persist date as true date",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) )` should persist date as true date",
+			"duration": 5,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to 'August 15, 2016'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).printDate( )` should be equal to 'August 15, 2016'",
+			"duration": 4,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to 'August 15, 2016'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).getDate( )` should be equal to 'August 15, 2016'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '2016-08-14T16:00:00'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).realDate( )` should be equal to '2016-08-14T16:00:00'",
+			"duration": 3,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '2016-08-15T00:00:00'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).relativeDate( )` should be equal to '2016-08-15T00:00:00'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to '0​2016​08​14​16​00​00​00480'",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).trueDate` should be equal to '0​2016​08​14​16​00​00​00480'",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should be equal to [ 2016081416, 480 ]",
+			"fullTitle": "infiniti `Infiniti( new Date( '8/15/2016' ) ).compact( )` should be equal to [ 2016081416, 480 ]",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should decompose true date to a moment object",
+			"fullTitle": "infiniti `Infiniti( '0​2016​08​14​16​00​00​00480' ).parse( )` should decompose true date to a moment object",
+			"duration": 1,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should decompose compact date to a moment object",
+			"fullTitle": "infiniti `Infiniti( [ 2016081416, 480 ] ).parse( )` should decompose compact date to a moment object",
+			"duration": 2,
+			"currentRetry": 0,
+			"err": {}
+		},
+		{
+			"title": "should have the same trueDate regardless of how many times it was parsed",
+			"fullTitle": "infiniti `Infiniti parse with trueDate and compact date` should have the same trueDate regardless of how many times it was parsed",
+			"duration": 2,
+			"currentRetry": 0,
+			"err": {}
+		}
+	]
 }
